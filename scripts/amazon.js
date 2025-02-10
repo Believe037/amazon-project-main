@@ -1,8 +1,8 @@
 
-import {cart} from "../data/cart.js";
+import {cart, addToCart} from "../data/cart.js";
 import { products } from "../data/products.js";
 
-// the data(products) is coming from data/product.js
+
 
 
 // to combine all the html and render
@@ -65,11 +65,15 @@ products.forEach((product) => {
 
 })
 
-// console.log(productsHTML)
+
 
 // render on DOM
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML
+
+
+
+
 
 // select all and get all the add to cart button
 
@@ -84,30 +88,12 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
       addedToCart.classList.remove('reveal')
     }, 2000)
 
-    // declare an item undefined outside scope
-    let matchingItem;
-
-    // loop through cart array to see if productId matches existing product(productId)
-    cart.forEach((item) => {
-      if(productId === item.productId){
-        matchingItem = item;
-      }
-    });
-    
-    // increase quantity if matchingItem is true
-    if(matchingItem) {
-      matchingItem.quantity += 1
-    } else {
-      // pushing a product object to cart
-    cart.push({
-      productId: productId,
-      quantity: selectQty
-    });
-    }
+   addToCart(productId, selectQty);
 
     let cartQuantity = 0;
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
+    
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity;
     });
 
     let cartQty = document.querySelector('.js-cart-quantity')
