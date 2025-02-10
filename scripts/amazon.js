@@ -33,7 +33,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-select-qty-${product.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -73,6 +73,7 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
+    const selectQty = Number(document.querySelector(`.js-select-qty-${productId}`).value);
 
     // declare an item undefined outside scope
     let matchingItem;
@@ -91,7 +92,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
       // pushing a product object to cart
     cart.push({
       productId: productId,
-      quantity: 1
+      quantity: selectQty
     });
     }
 
@@ -102,5 +103,10 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
     let cartQty = document.querySelector('.js-cart-quantity')
     cartQty.innerHTML = cartQuantity
+    console.log(cart)
   });
+
+  
+
+  
 })
