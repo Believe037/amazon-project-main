@@ -1,4 +1,6 @@
 
+import {cart} from "../data/cart.js";
+
 // the data(products) is coming from data/product.js
 
 
@@ -49,7 +51,7 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -74,6 +76,12 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
     const selectQty = Number(document.querySelector(`.js-select-qty-${productId}`).value);
+    const addedToCart = document.querySelector(`.js-added-${productId}`)
+
+    addedToCart.classList.add('reveal')
+    setTimeout(() => {
+      addedToCart.classList.remove('reveal')
+    }, 2000)
 
     // declare an item undefined outside scope
     let matchingItem;
