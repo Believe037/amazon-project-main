@@ -85,3 +85,16 @@ export function updateQuantity(productId, newQuantity){
 document.querySelector(`.js-item-quantity-update-${productId}`).innerHTML = newQuantity;
   saveToStorage()
 }
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem;
+  // loop through cart array to see if productId matches existing product(productId)
+  cart.forEach((cartItem) => {
+    if(productId === cartItem.productId){
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.deliveryOptionId = deliveryOptionId;
+  saveToStorage();
+}
