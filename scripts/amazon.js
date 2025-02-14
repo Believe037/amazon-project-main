@@ -1,10 +1,10 @@
 
-import {cart, addToCart} from "../data/cart.js";
+import {cart, addToCart, updateCartQuantity} from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
 
-
+updateCartQuantity()
 
 // to combine all the html and render
 
@@ -89,17 +89,11 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
       addedToCart.classList.remove('reveal')
     }, 2000)
 
-   addToCart(productId, selectQty);
+    addToCart(productId, selectQty);
+    updateCartQuantity();
 
-    let cartQuantity = 0;
-    
-    cart.forEach((cartItem) => {
-      cartQuantity += cartItem.quantity;
-    });
+    console.log(cart);
 
-    let cartQty = document.querySelector('.js-cart-quantity')
-    cartQty.innerHTML = cartQuantity
-    console.log(cart)
   });
 
   
