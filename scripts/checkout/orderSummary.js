@@ -4,11 +4,8 @@ import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import { removeFromCart } from "../../data/cart.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js'
-
-const today = dayjs();
-const deliveryDate = today.add(7,'days');
-console.log(deliveryDate.format('dddd, MMMM D'))
+import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 
 export function renderOrderSummary() {
@@ -137,13 +134,16 @@ export function renderOrderSummary() {
     link.addEventListener('click', () => {
       // Remove product from page using data-productid
       const productId = link.dataset.productId;
-      removeFromCart(productId)
+      removeFromCart(productId);
       // remove from DOM
 
-      const container = document.querySelector(`.js-cart-item-container-${productId}`)
+      const container = document.querySelector(`.js-cart-item-container-${productId}`
 
-      updateCartQuantity()
+      );
+
+      updateCartQuantity();
       container.remove();
+      renderPaymentSummary();
     })
   })
 
@@ -173,7 +173,8 @@ export function renderOrderSummary() {
     element.addEventListener('click', () => {
       const {productId, deliveryOptionId} = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
-      renderOrderSummary()
+      renderOrderSummary();
+      renderPaymentSummary();
     })
   });
 }
