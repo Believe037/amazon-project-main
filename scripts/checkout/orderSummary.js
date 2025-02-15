@@ -165,6 +165,7 @@ export function renderOrderSummary() {
       let newQuantity = Number(document.querySelector(`.js-input-quantity-${productId}`).value);
       updateQuantity(productId, newQuantity);
       updateCartQuantity();
+      renderPaymentSummary();
 
     })
   });
