@@ -85,7 +85,6 @@ export function renderOrderSummary() {
     const dateString = deliveryDate.format(
       `ddd, MMM D`
     )
-    console.log(dateString)
 
     const priceString = deliveryOption.priceCents === 0
     ? 'FREE'
