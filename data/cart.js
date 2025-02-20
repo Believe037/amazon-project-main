@@ -60,7 +60,7 @@ export function updateCartQuantity(){
   console.log(cartQuantity)
 
   let cartQty = document.querySelector('.js-cart-quantity')
-    cartQty.innerHTML = cartQuantity;
+    cartQty.innerHTML = Number(cartQuantity);
   
 }
 
