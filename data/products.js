@@ -76,7 +76,7 @@ console.log(date.toLocaleDateString('en-US'));
 export let products = [];
 
 export function loadProductsFetch(){
-  const promise =fetch(
+  const promise = fetch(
     'https://supersimplebackend.dev/products'
     ).then((response)=>{
     return response.json();
@@ -88,6 +88,7 @@ export function loadProductsFetch(){
       return new Product(productDetails);
     });
   });
+  console.log('loaded products')
   return promise;
 }
 
